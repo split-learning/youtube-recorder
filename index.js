@@ -133,7 +133,8 @@ function opCursor() {
 	d.formatArray.push({
 		"op": "cur",
 		"ts": getYTTime(),
-		"pos": [pos.row, pos.column]
+		"pos": [pos.row, pos.column],
+		"file": fileName
 	})
 	console.log(JSON.stringify(d.formatArray))
 }
