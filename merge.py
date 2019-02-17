@@ -5,7 +5,7 @@ import argparse
 import numpy as np
 
 def attrgetter(elem):
-    return elem['ts']
+    return float(elem['ts'])
 
 
 parser = argparse.ArgumentParser(description='Merge JSON transcripts.')
@@ -26,7 +26,7 @@ for i,v in enumerate(dataList): #data['formatArray']):
 	finalFormatArray = finalFormatArray + v['formatArray']
 	
 
-sorted(finalFormatArray, key=attrgetter)
+finalFormatArray = sorted(finalFormatArray, key=attrgetter)
 a = dataList[0]
 a['formatArray'] = finalFormatArray
 with open('data.json', 'w') as outfile:

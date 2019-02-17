@@ -5,9 +5,10 @@ var firstScriptTag = document.getElementsByTagName('script')[0];
 firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
 var player;
-var playerSize = 300
+var playerSize = 600
 var aspect = 640/360
 let videoID = 'cXgA1d_E-jY'
+let filename;
 function onYouTubeIframeAPIReady() {
 	player = new YT.Player('player', {
 		height: playerSize,
@@ -32,6 +33,8 @@ function stopVideo() {
 	player.stopVideo();
 }
 
+
+let prevtime = 0;
 function getYTTime() {
 	return player.getCurrentTime().toFixed(2)
 }
@@ -41,20 +44,29 @@ let d = { 	"youtubeID":videoID,
 
 var editor = ace.edit("editor");
 editor.setTheme("ace/theme/twilight");
-editor.session.setMode("ace/mode/javascript");
+// editor.session.setMode("ace/mode/javascript");
+editor.setOptions({
+    enableBasicAutocompletion: false
+});
 // change
+var recordPos = false
+
 editor.getSession().on('change', function(e) {
+	if(recordPos) {
+		opCursor()
+		recordPos = false
+	}
 	console.log(e)
 	if (e.action === 'insert') {
 		if (e.lines.length > 1 || e.lines[0].length > 1){
 			opBlock(e.lines)
+			recordPos = true
 		} else {
 			opCharacter(e.lines[0])
 		}
 	} else if (e.action === 'remove') {
 		opBackspace()
 	}
-	
 	//console.log(d)
 });
 // down
@@ -103,6 +115,7 @@ $('#add-file').click(() => {
 })
 
 $('#submit').click(function() {
+	player.seekTo(0)
 	opAddFile($("#file-name-input").val())
 	$("#modal").hide()
 })
@@ -132,11 +145,12 @@ function opBlock(lines) {
 
 function opCursor() {
 	let pos = editor.getCursorPosition()
+	console.log(filename)
 	d.formatArray.push({
 		"op": "cur",
 		"ts": getYTTime(),
 		"pos": [pos.row, pos.column],
-		"file": fileName
+		"file": filename
 	})
 	console.log(JSON.stringify(d.formatArray))
 }
@@ -148,7 +162,7 @@ function opBackspace() {
 	})
 }
 
-let fileName;
+
 function opAddFile(name) {
 	d.formatArray.push({
 		"op": "adf",
