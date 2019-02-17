@@ -7,11 +7,12 @@ firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 var player;
 var playerSize = 300
 var aspect = 640/360
+let videoID = 'rHiSsgFRgx4'
 function onYouTubeIframeAPIReady() {
 	player = new YT.Player('player', {
 		height: playerSize,
 		width: playerSize * aspect,
-		videoId: 'rHiSsgFRgx4',
+		videoId: videoID,
 		events: {
 			'onReady': onPlayerReady,
 			'onStateChange': onPlayerStateChange
@@ -35,7 +36,8 @@ function getYTTime() {
 	return player.getCurrentTime().toFixed(2)
 }
 
-let d = { "formatArray":[] }
+let d = { 	"youtubeID":videoID,
+			"formatArray":[] }
 
 var editor = ace.edit("editor");
 editor.setTheme("ace/theme/twilight");
