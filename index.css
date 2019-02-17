@@ -1,0 +1,101 @@
+html,
+body {
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	height: 100%;
+}
+
+#modal {
+	position: absolute;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	width: 100%;
+	height: 100%;
+	background-color: #e6e6e6;
+	z-index: 100;
+	
+	#submit {
+		margin-top: 10px;
+	}
+}
+
+.master {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.youtube-container {
+	margin-left: 10px;
+}
+
+.editor-container {
+	display: flex;
+	justify-content: center;
+	//align-items: center;
+	flex-direction: column;
+	width: 100%;
+	padding: 10px;
+}
+
+.ace_editor {
+	position: relative !important;
+	border: 1px solid lightgray;
+	margin: auto;
+	height: 500px;
+	width: 100%;
+}
+
+.ace_editor.fullScreen {
+	height: auto;
+	width: auto;
+	border: 0;
+	margin: 0;
+	position: fixed !important;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	z-index: 10;
+}
+
+.fullScreen {
+	overflow: hidden
+}
+
+.scrollmargin {
+	height: 500px;
+	text-align: center;
+}
+
+.large-button {
+	color: lightblue;
+	cursor: pointer;
+	font: 30px arial;
+	padding: 20px;
+	text-align: center;
+	border: medium solid transparent;
+	display: inline-block;
+}
+.large-button:hover {
+	border: medium solid lightgray;
+	border-radius: 10px 10px 10px 10px;
+	box-shadow: 0 0 12px 0 lightblue;
+}
+
+#save-file {
+	background-color: #e6e6e6;
+	padding: 10px;
+	cursor: pointer;
+	width: 100px;
+	text-align: center;
+	margin-top: 5px;
+	height: 20px;
+	line-height: 20px;
+	border-radius: 4px;
+}
