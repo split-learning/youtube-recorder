@@ -22,6 +22,7 @@ function onYouTubeIframeAPIReady() {
 }
 
 function onPlayerReady(event) {
+	event.target.seekTo(0)
 	event.target.playVideo();
 }
 
@@ -115,7 +116,6 @@ $('#add-file').click(() => {
 })
 
 $('#submit').click(function() {
-	player.seekTo(0)
 	opAddFile($("#file-name-input").val())
 	$("#modal").hide()
 })
